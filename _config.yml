@@ -1,0 +1,31 @@
+# Site settings
+title: Romke van der Meulen
+email: romke.vd.meulen@gmail.com
+description: A Dutch student of Man and Machine, Science and Faith, Philosophy and Life.
+baseurl: ""
+url: "https://romkevdmeulen.nl"
+twitter_username: RomkeVdMeulen
+github_username:  RomkeVdMeulen
+medium_username:  RomkeVdMeulen
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+gems:
+  - jekyll-gist
+  - jekyll-paginate
+
+exclude: [nbproject]
+
+# Homepage
+paginate: 50
+
+# Defaults
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "post"
+      comments: true

@@ -1,0 +1,73 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+
+// Our variables
+$base-font-family:   "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size:     16px;
+$base-font-weight:   400;
+$small-font-size:    $base-font-size * 0.875;
+$base-line-height:   1.5;
+
+$spacing-unit:       30px;
+
+$text-color:         #bbb;
+$background-color:   #222;
+
+$icon-fill-color:    $text-color;
+$menu-icon-fill-color: darken($text-color, 20%);
+$share-icon-fill-color: #eee;
+
+$link-color:         #268bd2;
+$link-visited-color: lighten($link-color, 20%);
+$link-hover-color:   #fff;
+
+$nav-border-color:     #ccc;
+$nav-background-color: $background-color;
+
+$post-meta-color:    #ccc;
+
+$divider-color:      #ccc;
+$blockquote-color:   #ccc;
+$blockquote-border-color: #ccc;
+
+$code-border-color:  #073642;
+$code-background-color: #002b36;
+$code-text-color:    #839496;
+
+$content-width:      860px;
+
+$on-palm:            600px;
+$on-laptop:          800px;
+
+$z-index-overlay:    1;
+$z-index-wrapper:    100;
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "mixins",
+        "base",
+        "layout",
+        "syntax-highlighting",
+        "pages",
+        "posts",
+		"index"
+;

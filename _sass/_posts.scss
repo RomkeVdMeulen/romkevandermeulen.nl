@@ -1,0 +1,46 @@
+article.post {
+}
+
+#share {
+    margin: 50px 0;
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+
+        li {
+            display: inline;
+
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+
+                svg {
+                    width: 50px;
+                    height: 50px;
+                    fill: $share-icon-fill-color;
+                }
+            }
+        }
+    }
+}
+
+nav.post-nav {
+    @include clearfix();
+
+	a {
+		display: block;
+		margin-bottom: $spacing-unit;
+		float: left;
+		max-width: 48%;
+
+		&.next {
+			float: right;
+		}
+	}
+}

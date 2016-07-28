@@ -1,0 +1,201 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/**
+ * Basic styling
+ */
+html {
+    height: 100%;
+}
+
+body {
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    color: $text-color;
+    background: $background-color url(../img/bg.jpg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    height: 100%;
+}
+
+
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+
+/**
+ * Images
+ */
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+
+
+/**
+ * Figures
+ */
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: $small-font-size;
+}
+
+
+
+/**
+ * Lists
+ */
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+         margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $base-font-weight;
+}
+
+
+
+/**
+ * Links
+ */
+a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:visited {
+        color: $link-visited-color;
+    }
+
+    &:hover {
+        color: $link-hover-color;
+        text-decoration: underline;
+    }
+}
+
+
+
+/**
+ * Blockquotes
+ */
+blockquote {
+    color: $blockquote-color;
+    border-left: 4px solid $blockquote-border-color;
+    padding-left: $spacing-unit / 2;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Code formatting
+ */
+code {
+    padding: 1px 5px;
+	word-wrap: break-word;
+}
+
+pre {
+    font-size: 15px;
+    color: $code-text-color;
+    background-color: $code-background-color;
+    border: 1px solid $code-border-color;
+    border-radius: 3px;
+    padding: 8px 12px;
+    overflow-x: auto;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+
+
+/**
+ * Wrapper
+ */
+#wrapper {
+    min-height: 100%;
+    width: $content-width;
+    margin: 0 auto;
+    background-color: $background-color;
+    position: relative;
+    z-index: $z-index-wrapper;
+    @include clearfix();
+
+    @include media-query($on-laptop) {
+        width: auto;
+    }
+}
+
+
+
+/**
+ * Icons
+ */
+svg {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	fill: $icon-fill-color;
+}
+
+.icon--medium > svg {
+  path:nth-child(1) {
+	fill: #d0d2d3;
+  }
+  path:nth-child(2) {
+	fill: #a6a8ab;
+  }
+  path:nth-child(3) {
+	fill: #808184;
+  }
+  path:nth-child(4) {
+	fill: #58595b;
+  }
+}

@@ -1,0 +1,21 @@
+#index {
+
+	article {
+		padding-bottom: $spacing-unit / 2;
+		margin-bottom: $spacing-unit * 3;
+
+		header {
+			margin-bottom: $spacing-unit / 2;
+			h2 {
+				margin-bottom: 0;
+			}
+			span {
+				font-size: 0.8em;
+				padding-right: 15px;
+			}
+		}
+		p {
+			margin-bottom: 0;
+		}
+	}
+}
