@@ -154,7 +154,7 @@ but the UI and business logic that I've written are plain code and will work wit
 
 More than that: it's elegant. In fact, the code I've written since we've decided on Aurelia
 and started creating real UI components has been some of the most elegant code I've ever written.
-I'd say it reads like Shakespear, except I think Shakespear will be harder for the average English-speaker
+I'd say it reads like Shakespeare, except I think Shakespeare will be harder for the average English-speaker
 to understand than some of the code I've pushed to our repository over the last few weeks.
 
 There are still some rough edges here and there. The documentation of some of the more advanced features still leaves a lot
