@@ -9,8 +9,7 @@ tags:
   - frontend
 excerpt:
   In which I try out three JavaScript frameworks to see which is best suited for
-  building individual frontend widgets, working with each for a week or two to
-  get some actual experience of what kind of code they enable.
+  building individual frontend widgets.
 ---
 
 ## Or: that framework frameworks best which frameworks least.
