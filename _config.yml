@@ -15,6 +15,7 @@ highlighter: rouge
 gems:
   - jekyll-gist
   - jekyll-paginate
+  - jemoji
 
 exclude: [nbproject]
 
