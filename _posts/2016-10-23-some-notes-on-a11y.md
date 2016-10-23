@@ -1,6 +1,6 @@
 ---
 title: "Some notes on Accessibility"
-date: 2016-10-12
+date: 2016-10-23
 tags:
   - a11y
   - html
