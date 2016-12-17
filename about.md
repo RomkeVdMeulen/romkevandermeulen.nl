@@ -2,7 +2,7 @@
 layout: page
 title: About me
 ---
-I am a young programmer from Groningen, The Netherlands. I care deeply about
+I am a (frontend) developer from Groningen, The Netherlands. I care deeply about
 learning new things and enjoy passing that knowledge on in a form that enables
 others to use it. I love making easy-to-use tools that support people in
 creating great things, and help them to write and tell the stories of their own
