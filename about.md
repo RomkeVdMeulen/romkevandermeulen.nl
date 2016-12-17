@@ -20,5 +20,4 @@ few decades, and we have so much further to go still.
 
 Besides this site, you can also follow me on [Twitter](https://twitter.com/RomkeVdMeulen)
 and read my (more philosophical) articles on [Medium](). You can also
-[contact me directly]({{ site.baseurl }}/contact). Potential employers can take a
-look at [my resumé]({{ site.baseurl }}/resume).
+[contact me directly]({{ site.baseurl }}/contact).
