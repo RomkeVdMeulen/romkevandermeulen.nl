@@ -3,32 +3,32 @@
 
     <ul>
         <li class="reddit">
-            <a href="http://www.reddit.com/submit?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ page.title | default:"" | uri_escape }}" target="_blank">
+            <a href="http://www.reddit.com/submit?url={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ title | default:"" | uri_escape }}" target="_blank">
                 {% include share/share-icon-reddit.svg %}
             </a>
         </li>
         <li class="hn">
-            <a href="http://news.ycombinator.com/submitlink?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ page.title | default:"" | uri_escape}}" target="_blank">
+            <a href="http://news.ycombinator.com/submitlink?u={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ title | default:"" | uri_escape}}" target="_blank">
                 {% include share/share-icon-hn.svg %}
             </a>
         </li>
         <li class="twitter">
-            <a href="https://twitter.com/intent/tweet?via={{ site.twitter_username }}&url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&text={{ page.title | default:"" | uri_escape}}" target="_blank">
+            <a href="https://twitter.com/intent/tweet?via={{ site.twitter_username }}&url={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&text={{ title | default:"" | uri_escape}}" target="_blank">
                 {% include share/share-icon-twitter.svg %}
             </a>
         </li>
         <li class="facebook">
-            <a href="http://www.facebook.com/sharer.php?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ page.title | default:"" | uri_escape}}" target="_blank">
+            <a href="http://www.facebook.com/sharer.php?u={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&t={{ title | default:"" | uri_escape}}" target="_blank">
                 {% include share/share-icon-facebook.svg %}
             </a>
         </li>
         <li class="googleplus">
-            <a href="https://plus.google.com/share?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}" target="_blank">
+            <a href="https://plus.google.com/share?url={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}" target="_blank">
                 {% include share/share-icon-googleplus.svg %}
             </a>
         </li>
         <li class="linkedin">
-            <a href="http://www.linkedin.com/shareArticle?url={{ site.twitter_username }}&url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ page.title | default:"" | uri_escape}}" target="_blank">
+            <a href="http://www.linkedin.com/shareArticle?url={{ site.twitter_username }}&url={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ title | default:"" | uri_escape}}" target="_blank">
                 {% include share/share-icon-linkedin.svg %}
             </a>
         </li>
