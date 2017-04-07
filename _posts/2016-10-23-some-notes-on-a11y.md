@@ -44,9 +44,10 @@ and one for output:
 * Make sure all input methods are fully supported. Users should be able
   to access every part of your application with just a keyboard without
   a mouse, with only touch and on-screen keyboards, etc..
-* Make sure that all important information is conveyed as text. So no
-  critical information in images without alt, no graphical structuring
-  of your content unless that structure is also in the markup, etc..
+* Make sure that all important information is conveyed as clearly
+  readable text. So no critical information in images without alt, no
+  graphical structuring of your content unless that structure is also in
+  the markup, sufficient contrast, etc..
 
 Simple isn't it? And you thought a11y was too hard a topic...
 
