@@ -67,7 +67,9 @@ One gotcha that I've fallen into a few times while developing an
 interface with JavaScript: an `<a>` element without an `href` can't be
 reached by pressing `Tab`. So either add `href="#"` or `tabindex="0"`
 (tabindex higher than 0 breaks the element out of the natural tab order
-and [is discouraged](http://webaim.org/techniques/keyboard/)).
+and [is discouraged](http://webaim.org/techniques/keyboard/)) to make sure
+the element is focusable. Better yet: use a `<button>` in stead and
+only use `<a>` when you're really linking to something else.
 
 > For best results: 
 > Structure your underlying source code so that the reading/navigation
