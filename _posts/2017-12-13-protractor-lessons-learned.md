@@ -57,11 +57,11 @@ you may need to delay your tests until the update is complete. Fortunately,
 Protractor gives you `browser.wait` and `ExpectedConditions` to do just that.
 For example:
 
-{% highlight js %}
+```js
 const EC = ExpectedConditions;
 element(by.tagName('button')).click();
 browser.wait(EC.presenceOf(element(by.id("my-text")), 500);
-{% endhighlight %}
+```
 
 This will test the same behavior as `expect(element(by.id("my-text")).isPresent()).toBe(true)`
 would, but it gives your UI a 500ms window in which to update. If it doesn't,
@@ -107,7 +107,7 @@ making code harder to debug. With these new language features it becomes simple
 enough to just manage asynchronous operations yourself. A Protractor test
 built with async / await might look something like this:
 
-{% highlight js %}
+```js
 describe('The contact form', () => {
 
     it('ensures the subject field is filled out before submitting', async () => {
@@ -125,7 +125,7 @@ describe('The contact form', () => {
         await expect(error.getText()).toBe('Please enter a subject for your message');
     });
 });
-{% endhighlight %}
+```
 
 If you decide to start adding Protractor code to your project, I advice you to
 start writing async / await code right from the start so you won't have to
@@ -153,7 +153,7 @@ Building a mock-implementation of your backend is not all that difficult. For my
 last two projects I've built mock backends using [Express](https://expressjs.com/).
 A simple mock backend resource in Express might look something like this:
 
-{% highlight js %}
+```js
 app.get("/backend/invoices", (req, res) => {
     if (req.query["load-failure"] === "true") {
         setTimeout(() => res.sendStatus(500), 500);
@@ -167,7 +167,7 @@ app.get("/backend/invoices", (req, res) => {
 
     setTimeout(() => res.send(DUMMY_INVOICE_DATA), 200);
 });
-{% endhighlight %}
+```
 
 As you can see, this backend supports testing of a couple of scenarios,
 triggered by adding certain GET parameters. By default, the predefined dummy
@@ -186,7 +186,7 @@ the structure of your UI and your tests. They call it a
 [Page Object](http://www.protractortest.org/#/page-objects).
 Here's an example from the Protractor doc:
 
-{% highlight js %}
+```js
 var AngularHomepage = function() {
   var nameInput = element(by.model('yourName'));
   var greeting = element(by.binding('yourName'));
@@ -203,7 +203,7 @@ var AngularHomepage = function() {
     return greeting.getText();
   };
 };
-{% endhighlight %}
+```
 
 Apart from the outdated ES5 syntax, this is a fine start to your abstraction
 layer. As my colleagues and I found out, though, just because Protractor calls
@@ -216,7 +216,7 @@ groups properties and methods by UI element, using nested plain objects.
 Here's an example (see the [Marker attributes](#marker-attributes) section
 to see what `by.marker` does).
 
-{% highlight js %}
+```js
 class Addresses {
 
     get title() {
@@ -250,12 +250,12 @@ class Addresses {
         };
     }
 }
-{% endhighlight %}
+```
 
 Then you also add a support class that encapsulates every component included in
 your test, plus some logic for loading different scenarios:
 
-{% highlight js %}
+```js
 class AddressesTest {
 
     constructor() {
@@ -266,13 +266,13 @@ class AddressesTest {
         return browser.get(`/addressestest?no-address-data=${noAddressData}`);
     }
 }
-{% endhighlight %}
+```
 
 With these classes, the actual Protractor test can be written like this (using
 async / await: see the section
 [Protractor and the Promise Manager](#protractor-and-the-promise-manager)):
 
-{% highlight js %}
+```js
 describe('The Addresses component', () => {
 
     const test = new AddressesTest();
@@ -299,7 +299,7 @@ describe('The Addresses component', () => {
         });
     });
 });
-{% endhighlight %}
+```
 
 Nice and simple, no?  My colleagues and I have been using TypeScript for a while
 now, and it makes importing these support classes and writing the actual test a
