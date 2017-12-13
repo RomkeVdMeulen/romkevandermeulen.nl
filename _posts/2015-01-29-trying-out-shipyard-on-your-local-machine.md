@@ -30,14 +30,14 @@ we'll be running shipyard inside a docker container. That means it can't access
 the docker daemon on your machine directly. So we have make docker listen on
 port `4243` so that shipyard can access it:
 
-{% highlight bash %}
+```bash
 sudo sh -c "echo 'DOCKER_OPTS=\"-H tcp://:4243 -H unix:///var/run/docker.sock\"' >> /etc/default/docker"
-{% endhighlight %}
+```
 
 Now we can run shipyard simply by pulling the necessary docker images from the
 central index and running them:
 
-{% highlight bash %}
+```bash
 docker run -it -d --name shipyard-rethinkdb-data \
 	   --entrypoint /bin/bash shipyard/rethinkdb -l
 
@@ -48,16 +48,16 @@ docker run -it -P -d --name shipyard-rethinkdb \
 docker run -it -p 8080:8080 -d --name shipyard \
 	   --link shipyard-rethinkdb:rethinkdb \
 	   --restart=always shipyard/shipyard
-{% endhighlight %}
+```
 
 Your shipyard is now up and running. You can access the web interface at 
 [http://localhost:8080](http://localhost:8080). We can also access shipyard by
 CLI. For this we simply run another container. You might want to save this
 command to a script or alias to make it easier to remember.
 
-{% highlight bash %}
+```bash
 docker run --rm -it shipyard/shipyard-cli
-{% endhighlight %}
+```
 
 Once you're on the CLI, you need to login to the shipyard instance we've just
 setup. Remember: the CLI is running inside a separate container, with no direct
@@ -74,12 +74,12 @@ interface, we still need to connect our localhost docker daemon to shipyard
 container). In the web interface you can go to the engines tab. From the CLI you
 can run this:
 
-{% highlight bash %}
+```bash
 shipyard add-engine --id 'localhost' \
 		 --addr 'http://[your-ip]:4243' \
 		 --cpus '1.0' --memory '1024' \
 		 --label 'local' --label 'dev'
-{% endhighlight %}
+```
 
 Now that you have your shipyard set up and pointed at your local machine, you
 should already be able to see several running containers, like shipyard itself.

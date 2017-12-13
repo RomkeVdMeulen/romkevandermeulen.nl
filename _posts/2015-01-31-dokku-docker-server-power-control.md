@@ -55,9 +55,9 @@ to deploy new apps. Write the domain name, e.g. `mydomain.com`, to
 SSH key of our development machine so that we can push our code to Dokku. On
 your development machine run this:
 
-{% highlight shell %}
+```shell
 cat .ssh/id_rsa.pub| ssh root@mydomain.com sshcommand acl-add dokku myname
-{% endhighlight %}
+```
 
 ( The `myname` is to keep track of that key in case you want to delete it later. )
 
@@ -65,12 +65,12 @@ Now we're ready to use Dokku. To try it out, check out a sample
 [node.js](http://nodejs.org/ "NodeJS") project on your development machine and
 then push it to Dokku:
 
-{% highlight shell %}
+```shell
 git clone git@github.com:heroku/node-js-sample.git
 cd node-js-sample
 git remote add dokku dokku@mydomain.com:test
 git push dokku master
-{% endhighlight %}
+```
 
 Now you should see something like this:
 
@@ -111,10 +111,10 @@ deploying a pre-existing Docker image: we'll deploy a blog using the
 But before you can set up a new blog, you'll first need to set up a MySQL
 database server. Here is how I did it:
 
-{% highlight shell %}
+```shell
 docker run --name mysql --restart=always \
 	   -e MYSQL_ROOT_PASSWORD=some-secret-string -d mariadb
-{% endhighlight %}
+```
 
 The `--restart=always` will ensure that the Docker daemon starts up the container
 again after an error or reboot. The Wordpress container can set up its own
@@ -122,34 +122,34 @@ database if you give it root access to the DB server, but I wanted to try doi
 it myself. Rather than running a mysql client in another container, I installed
 it directly on my server:
 
-{% highlight shell %}
+```shell
 {% raw %}
 apt-get install -qqy mysql-client
 mysql -h`docker inspect --format "{{ .NetworkSettings.IPAddress }}" mysql` \
 	  -uroot -p
 {% endraw %}
-{% endhighlight %}
+```
 
 The code between backticks retrieves the IP address assigned to my db server
 container so I can connect to it.
 \EDIT: [I've found a more elegant way to do this]({{ site.baseurl }}/2015/02/13/easy-access-dockerized-mysql-server.html "Easy access to a dockerized mysql server")
 Now I can set up a database for my new blog by hand:
 
-{% highlight mysql %}
+```mysql
 CREATE DATABASE myblog;
 CREATE USER 'myblog'@'%' IDENTIFIED BY 'another-password';
 GRANT ALL ON myblog.* TO 'myblog'@'%';
 FLUSH PRIVILEGES;
-{% endhighlight %}
+```
 
 Now we're ready to deploy our Wordpress blog:
 
-{% highlight shell %}
+```shell
 docker run --name myblog --link mysql:mysql \
 	   -e WORDPRESS_DB_USER=myblog -e WORDPRESS_DB_PASSWORD=another-password \
 	   -e WORDPRESS_DB_NAME=myblog -e VIRTUAL_HOST=blog.mydomain.com \
 	   --restart=always -d wordpress
-{% endhighlight %}
+```
 
 Now our blog container is running, as we can see by running `docker ps`.
 However, we can only access its port `80` directly from the server. The
@@ -168,12 +168,12 @@ solution: [docker-gen](http://jasonwilder.com/blog/2014/03/25/automated-nginx-re
 It's a tool that automatically builds and updates config files for all running
 containers. Let's install this wonderful tool:
 
-{% highlight shell %}
+```shell
 cd /tmp
 wget https://github.com/jwilder/docker-gen/releases/download/0.3.6/docker-gen-linux-amd64-0.3.6.tar.gz
 tar xzf docker-gen-linux-amd64-0.3.6.tar.gz
 mv docker-gen /etc/nginx/docker-gen
-{% endhighlight %}
+```
 
 Now we have to create a template for the nginx config we want to generate. I
 based mine on [jwilder's nginx-proxy](https://github.com/jwilder/nginx-proxy/blob/master/nginx.tmpl).
@@ -182,16 +182,16 @@ a single command. But if we want it to run automatically whenever our server
 reboots, then we'll have to install it as a service. To do so, write this script
 in `/etc/nginx/docker-gen-service`:
 
-{% highlight bash %}
+```bash
 #!/bin/bash
 /etc/nginx/docker-gen -only-exposed -watch -notify "service nginx reload" \
 	  /etc/nginx/docker.template /etc/nginx/sites-enabled/docker_containers
-{% endhighlight %}
+```
 
 And make it executable: `chmod +x /etc/nginx/docker-gen-service`. Now we'll
 write some upstart config to `/etc/init/docker-nginx.conf`:
 
-{% highlight conf %}
+```conf
 # docker-nginx - Nginx config generator for Docker containers
 
 description "Nginx config generator for Docker containers"
@@ -216,7 +216,7 @@ end script
 
 # Start the process
 exec /etc/nginx/docker-gen-service
-{% endhighlight %}
+```
 
 And now we start our new service: `initctl start docker-nginx`. Now docker-gen
 is keeping an eye on all our Docker containers, and updating our nginx config to

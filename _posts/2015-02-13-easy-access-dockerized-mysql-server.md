@@ -13,9 +13,9 @@ tags:
 ---
 Deploying a new mysql server using Docker is quite easy:
 
-{% highlight shell %}
+```shell
 docker run --name mysql mariadb
-{% endhighlight %}
+```
 
 But once the server is up, you want root access to it from your command-line.
 The [mariadb repo](https://registry.hub.docker.com/_/mariadb/) shows an example

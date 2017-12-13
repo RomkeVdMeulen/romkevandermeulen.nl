@@ -17,7 +17,7 @@ The goal is to be able to decorate a property and have access to a translation
 from JavaScript (injecting translations into templates is another story). It
 would look like this:
 
-{% highlight ts %}
+```ts
 import {translation} from "my-translation-service";
 
 class MyFancyEditor {
@@ -33,15 +33,15 @@ class MyFancyEditor {
 		}
 	}
 }
-{% endhighlight %}
+```
 
 I started off with stubbing the decorator:
 
-{% highlight js %}
+```js
 export function translation(textkey: string) {
 	return (target: any, property: string) => void
 }
-{% endhighlight %}
+```
 
 Later on I also added another decorator: `@translationPromise`. The idea was
 that while `@translation` injects the translation once it's loaded and doesn't
@@ -67,12 +67,12 @@ backend, which for this project was Java EE:
 Now I just need to implement a REST resource to serve the translations for
 every available language. And boom, translations are served:
 
-{% highlight js %}
+```js
 {
   "editor-error-toolong": "Sorry, your message is longer than the maximum 140 characters!",
   // and many more...
 }
-{% endhighlight %}
+```
 
 Now I just create a frontend service to read this in, and I can implement the
 last puzzle piece: the decorators, which all this started with.

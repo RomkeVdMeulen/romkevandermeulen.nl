@@ -32,12 +32,12 @@ container, which works pretty simply: you set an environmental `VIRTUAL_HOST` o
 your container, and docker-gen creates all the necessary nginx config to host
 your container on this URL. For example:
 
-{% highlight shell %}
+```shell
 docker run \
        -e WORDPRESS_DB_USER=foo -e WORDPRESS_DB_PASSWORD=bar \
        -e WORDPRESS_DB_NAME=foo -e VIRTUAL_HOST=blog.foo.com \
        --link mysql:mysql --restart=always wordpress
-{% endhighlight %}
+```
 
 This command is all you need to run (provided you've already set up your
 database of course) to deploy a new Wordpress blog and serve it on blog.foo.com.
@@ -59,27 +59,27 @@ site any way you want. Here is the new way to deploy a Wordpress blog. I creat
 a Wordpress container and give it a new environmental: `NGINX_UPSTREAM` rather
 than `VIRTUAL_HOST`:
 
-{% highlight shell %}
+```shell
 docker run \
        -e WORDPRESS_DB_USER=foo -e WORDPRESS_DB_PASSWORD=bar \
        -e WORDPRESS_DB_NAME=foo -e NGINX_UPSTREAM=fooblog \
        --name fooblogcontainer --link mysql:mysql \
        --restart=always wordpress
-{% endhighlight %}
+```
 
 docker-gen automatically updates the config file
 `/etc/nginx/conf.d/docker_upstream_hosts.conf`:
 
-{% highlight conf %}
+```conf
 upstream fooblog {
         # fooblogcontainer
         server 172.17.0.42:80;
 }
-{% endhighlight %}
+```
 
 Now I write the file `/etc/nginx/sites-available/com.foo.blog` by hand:
 
-{% highlight conf %}
+```conf
 server {
         server_name blog.foo.com;
 
@@ -93,7 +93,7 @@ server {
                 proxy_pass http://fooblog;
         }
 }
-{% endhighlight %}
+```
 
 I link to this new file from `/etc/nginx/sites-enabled` and then reload nginx.
 Now my new Wordpress site is available at blog.foo.com. Yes, it is more work
@@ -117,19 +117,19 @@ to `/etc/nginx/docker-gen-vhost-template`. The command that runs docker-gen with
 this template is embedded in a script at `/etc/nginx/docker-gen-vhost-service`
 with this content:
 
-{% highlight bash %}
+```bash
 #!/bin/bash
 /etc/nginx/docker-gen -only-exposed -watch -notify "service nginx reload" \
       /etc/nginx/docker-gen-vhost-template \
       /etc/nginx/sites-available/docker_virtual_hosts
-{% endhighlight %}
+```
 
 I put the output config file in `sites-available` and link to it from
 `sites-enabled` so that I can disable auto-generated site config if needed. Now
 I make an upstart job for this script (feel free to use another service manager)
 in `/etc/init/docker-virtualhosts.conf`:
 
-{% highlight conf %}
+```conf
 # docker-virtualhosts - Nginx config generator for Docker containers
 # using the VIRTUAL_HOST env
 
@@ -146,7 +146,7 @@ pre-start script
 end script
 
 exec /etc/nginx/docker-gen-vhost-service
-{% endhighlight %}
+```
 
 Now I simply run `initctl start docker-virtualhosts` and my config generator
 service is up.
@@ -194,12 +194,12 @@ template to `/etc/nginx/docker-gen-upstream-template`:
 
 Then I wrote the script `/etc/nginx/docker-gen-upstream-service`:
 
-{% highlight bash %}
+```bash
 #!/bin/bash
 /etc/nginx/docker-gen -only-exposed -watch -notify "service nginx reload" \
       /etc/nginx/docker-gen-upstream-template \
       /etc/nginx/conf.d/docker_upstream_hosts.conf
-{% endhighlight %}
+```
 
 And created an upstart job in `/etc/init/docker-upstreams.conf` exactly like the
 last one but executing `/etc/nginx/docker-gen-upstream-service`. The output
@@ -209,7 +209,7 @@ instructions like I've shown you. In case you're curious, the additional config
 files I used in my site example look like this:
 `/etc/nginx/global/restrictions.conf`:
 
-{% highlight conf %}
+```conf
 # Global restrictions configuration file.
 # Designed to be included in any server {} block.
 location = /favicon.ico {
@@ -228,11 +228,11 @@ location = /robots.txt {
 location ~ /\. {
         deny all;
 }
-{% endhighlight %}
+```
 
 And `/etc/nginx/global/wordpress.conf`:
 
-{% highlight conf %}
+```conf
 # Deny access to any files with a .php extension in the uploads directory
 # Works in sub-directory installs and also in multisite network
 # Keep logging the requests to parse later
@@ -241,7 +241,7 @@ location ~* /(?:uploads|files)/.*\.php$ {
 }
 
 client_max_body_size 8M;
-{% endhighlight %}
+```
 
 You may also want to include the `restrictions.conf` file in your `VIRTUAL_HOST`
 config template as well. So, if you've been following along with this tutorial,
