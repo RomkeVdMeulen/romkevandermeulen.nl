@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="twitter">
-            <a href="https://twitter.com/intent/tweet?via={{ site.twitter_username }}&url={{ url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&text={{ page.title | default:"" | cgi_escape }}" target="_blank">
+            <a href="https://twitter.com/intent/tweet?via={{ site.twitter_username }}&url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&text={{ page.title | default:"" | cgi_escape }}" target="_blank">
                 {% include share/share-icon-twitter.svg %}
             </a>
         </li>
