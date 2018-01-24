@@ -12,7 +12,7 @@ medium_username:  RomkeVdMeulen
 markdown: kramdown
 highlighter: rouge
 
-gems:
+plugins:
   - jekyll-gist
   - jekyll-paginate
   - jemoji
