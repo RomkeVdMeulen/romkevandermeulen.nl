@@ -61,6 +61,10 @@ if it is read before it is initialized.
 
 {%gist e45ee89ce848e7fda140635a4d29892b %}
 
+Do note that since each object that this decorator is used on is added to the Map,
+these objects won't go out of memory and won't be garbage collected. Thanks to
+Daniel Schiavini for pointing this out in the comments.
+
 P.S.: Ironically I came upon this [answer on StackOverflow](https://stackoverflow.com/questions/41397947/typescript-class-decorator-that-modifies-object-instance/41403157#41403157)
 only a short while after I spent hours on this problem. Seems I wasn't the first
 person to come up with this solution.
