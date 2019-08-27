@@ -22,11 +22,6 @@
                 {% include share/share-icon-facebook.svg %}
             </a>
         </li>
-        <li class="googleplus">
-            <a href="https://plus.google.com/share?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}" target="_blank">
-                {% include share/share-icon-googleplus.svg %}
-            </a>
-        </li>
         <li class="linkedin">
             <a href="http://www.linkedin.com/shareArticle?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ page.title | default:"" | cgi_escape }}" target="_blank">
                 {% include share/share-icon-linkedin.svg %}
