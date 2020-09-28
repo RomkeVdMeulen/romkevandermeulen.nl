@@ -6,7 +6,6 @@ baseurl: ""
 url: "http://romkevandermeulen.nl"
 twitter_username: RomkeVdMeulen
 github_username:  RomkeVdMeulen
-medium_username:  RomkeVdMeulen
 
 # Build settings
 markdown: kramdown
